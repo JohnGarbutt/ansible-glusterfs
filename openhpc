@@ -1,0 +1,3 @@
+[slave]
+10.60.253.16 ansible_user=centos
+#10.60.253.17 ansible_user=centos

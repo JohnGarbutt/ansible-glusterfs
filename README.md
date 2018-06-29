@@ -10,3 +10,6 @@ To install ansible:
 Now to run:
 
     ansible-playbook -i hosts master.yml
+
+Or:
+    ansible-playbook -i openhpc gluster.yml
