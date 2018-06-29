@@ -13,3 +13,4 @@
      gluster_cluster_transport_mode: rdma
      gluster_cluster_volume_options:
        cluster.nufa: 'on'
+     gluster_cluster_storage_group_name: slave

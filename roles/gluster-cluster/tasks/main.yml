@@ -15,13 +15,13 @@
   become: yes
   with_items:
     - centos-release-gluster
-    - glusterfs-server
-    - glusterfs-client
-    - glusterfs-fuse
-    - glusterfs-rdma
-    - glusterfs
-    - glusterfs-libs
-    - glusterfs-client-xlators
+    #- glusterfs-server
+    #- glusterfs-client
+    #- glusterfs-fuse
+    #- glusterfs-rdma
+    #- glusterfs
+    #- glusterfs-libs
+    #- glusterfs-client-xlators
 
 - name: Gluster-3.10 repo
   yum_repository:
