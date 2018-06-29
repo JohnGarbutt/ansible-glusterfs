@@ -7,7 +7,44 @@
     name: "{{ item }}"
   with_items:
     - epel-release
+
+- name: Remove old gluster stuff
+  package:
+    name: "{{ item }}"
+    state: absent
+  become: yes
+  with_items:
     - centos-release-gluster
+    - glusterfs-server
+    - glusterfs-client
+    - glusterfs-fuse
+    - glusterfs-rdma
+    - glusterfs
+    - glusterfs-libs
+    - glusterfs-client-xlators
+
+- name: Gluster-3.10 repo
+  yum_repository:
+    name: centos-gluster-4.1
+    description: CentOS Storage SIG repo for gluster 4.1
+    baseurl: http://mirror.centos.org/centos/$releasever/storage/$basearch/gluster-4.1
+    gpgkey: https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
+    enabled: yes
+
+- name: Ceph Luminous
+  yum_repository:
+    name: centos-ceph-luminous
+    description: CentOS Storage SIG repo for ceph luminous
+    baseurl: http://mirror.centos.org/centos/7/storage/x86_64/ceph-luminous/
+    gpgkey: https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
+    enabled: yes
+
+- name: Install glusterfs-server
+  yum:
+    name: glusterfs-server
+
+- name: Install glusterfs packages for mount and unmount
+  yum: name=glusterfs-client,glusterfs-rdma,glusterfs-fuse
 
 - name: Install Infiniband and Gluster packages
   package:
