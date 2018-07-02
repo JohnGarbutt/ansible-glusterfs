@@ -1,0 +1,16 @@
+---
+- name: Configure Gluster
+  hosts: slave
+  become: true
+  roles:
+   - role: gluster-cluster
+     gluster_cluster_volume_name: my_volume
+     gluster_cluster_block_devices:
+       - sdb
+       - sdc
+       - sdd
+     gluster_cluster_transport_interface: ib0
+     gluster_cluster_transport_mode: rdma
+     gluster_cluster_volume_options:
+       cluster.nufa: 'on'
+     gluster_cluster_storage_group_name: slave
